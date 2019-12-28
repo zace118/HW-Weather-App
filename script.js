@@ -4,7 +4,7 @@ const cityName = "Austin";
 console.log(cityName);
 
 $.ajax({
-    url:"api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=4f1be33da289be12850fc4f1ffb442c2",
+    url:"api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=dd0390e9886af8c80bbda292ef25a74c",
     method: "GET"
 }).then(function(res){
     console.log(res);
