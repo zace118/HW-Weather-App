@@ -1,3 +1,7 @@
+On click of the search, it needs to
+   -Create a new "tab" under the search bar.
+   -Bring up the city on the jumbotron
+
 
 Cards from Bootsrap for the Cities once they're pulled up.
 <div class="card" style="width: 18rem;">

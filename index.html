@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.4.0/moment.min.js"></script>
     <title>Weather App</title>
 
 </head>
@@ -14,6 +16,7 @@
         <span class="navbar-brand mb-0 h1">Weather H.U.D.</span>
     </nav>
     <br/>
+    
     <div class="row">
         
         <section class="container col-sm-3" id="sideNav">
@@ -27,11 +30,13 @@
         
         <section class="col-sm-8">
             <div class="jumbotron">
-                <h1 class="display-4">Hello, world!</h1>
-                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+                <h1 class="display-4" id="cityName"></h1>
+                <p id="currentDate"></p>
                 <hr class="my-4">
-                <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-                <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+                <b>Temperature: </b><p id="cityTemp"></p>
+                <b>Humidity: </b><p id="cityHumidity"></p>
+                <b>Windspeed: </b><p id="cityWind"></p>
+                <b>UV Index: </b><p id="cityUVI"></p>
             </div>
         </section>
 
@@ -42,7 +47,7 @@
     <aside class="row">
         <div class="col-sm-3"></div>
 
-        <div class="card" style="width: 13rem;">
+        <div class="card"  id="day1" style="width: 13rem;">
             <img src="..." class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">Card title</h5>
@@ -50,7 +55,7 @@
             </div>
         </div>
         
-        <div class="card" style="width: 13rem;">
+        <div class="card"  id="day2" style="width: 13rem;">
             <img src="..." class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">Card title</h5>
@@ -58,7 +63,7 @@
             </div>
         </div>
         
-        <div class="card" style="width: 13rem;">
+        <div class="card"  id="day3" style="width: 13rem;">
             <img src="..." class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">Card title</h5>
@@ -66,7 +71,7 @@
             </div>
         </div>
         
-        <div class="card" style="width: 13rem;">
+        <div class="card"  id="day4" style="width: 13rem;">
             <img src="..." class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">Card title</h5>
@@ -74,7 +79,7 @@
             </div>
         </div>
         
-        <div class="card" style="width: 13rem;">
+        <div class="card" id="day5"  style="width: 13rem;">
             <img src="..." class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">Card title</h5>
@@ -84,9 +89,6 @@
         
     </aside>
     
-    
-
-
     <script src="script.js"></script>
 </body>
 </html>
