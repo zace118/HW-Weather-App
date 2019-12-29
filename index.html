@@ -12,26 +12,24 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-dark bg-dark">
+    <nav class="navbar navbar-dark bg-dark" id="navBar">
         <span class="navbar-brand mb-0 h1">Weather H.U.D.</span>
+        <div class="input-group">
+            <input type="text" class="form-control" id="citySearch" placeholder="Search cities...">
+              <span class="input-group-btn">
+                <button class="btn btn-search" type="button" style="background-color: lightblue;"><i class="fa fa-search fa-fw">Search</i></button>
+              </span>
+        </div>
     </nav>
     <br/>
-    
+
     <div class="row">
-        
-        <section class="container col-sm-3" id="sideNav">
-            <div class="input-group">
-                <input type="text" class="form-control" id="citySearch" placeholder="Search cities...">
-                  <span class="input-group-btn">
-                    <button class="btn btn-search" type="button"><i class="fa fa-search fa-fw">Search</i></button>
-                  </span>
-            </div>
-        </section>
+
+         <section class="container col-sm-2"></section> 
         
         <section class="col-sm-8">
-            <div class="jumbotron">
+            <div class="jumbotron" style= "background-color: white">
                 <h1 class="display-4" id="cityName"></h1>
-                <img id="icon" src="">
                 <p id="currentDate"></p>
                 <hr class="my-4">
                 <b>Temperature: </b><p id="cityTemp"></p>
@@ -41,13 +39,12 @@
             </div>
         </section>
 
-        <section class="col-sm-1"></section>
-
+        <div class="col-sm-2"></div>
     </div>
     
+    <h1>5-Day Forecast</h1>
+
     <aside class="row">
-        <!-- <div class="col-sm-3"></div> -->
-        <h1>5-Day Forecast</h1>
         <br/>
         <div class="card"  id="day1" style="width: 13rem;">
             <div class="card-body">
@@ -75,7 +72,7 @@
         
         <div class="card"  id="day4" style="width: 13rem;">
             <div class="card-body">
-              <h5 class="card-title" id="forecast4"></h5>
+              <h5 class="card-title" id="nextDay4"></h5>
               <img src="" class="card-img-top" id="icon4">
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             </div>
