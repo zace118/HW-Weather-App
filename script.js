@@ -1,12 +1,19 @@
 const cityName = "Denver";
-let m =moment().format('dddd, MMMM Do YYYY');
+let m = moment().format('dddd, MMMM Do YYYY');
+let forecast1 =moment().add(1,'d').format('l');
+let forecast2 =moment().add(2,'d').format('l');
+let forecast3 =moment().add(3,'d').format('l');
+let forecast4 =moment().add(4,'d').format('l');
+let forecast5 =moment().add(5,'d').format('l');
 
 // const cityName = $('#citySearch').val();
 
 $('#currentDate').text(m);
-
-
-
+$('#nextDay1').text(forecast1);
+$('#nextDay2').text(forecast2);
+$('#nextDay3').text(forecast3);
+$('#nextDay4').text(forecast4);
+$('#nextDay5').text(forecast5);
 
 $.ajax({
     url:"https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=dd0390e9886af8c80bbda292ef25a74c",
