@@ -1,5 +1,8 @@
 On click of the search, it needs to
    -Create a new "tab" under the search bar.
+      <div class="btn-group-vertical">
+      ...
+      </div>
    -Bring up the city on the jumbotron
 
 
