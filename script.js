@@ -21,7 +21,7 @@ $("#searchButton").on('click', function(){
 
     // AJAX call to open weather api. Contains another AJAX call for the UVI
     $.ajax({
-        url:"https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=dd0390e9886af8c80bbda292ef25a74c",
+        url:"https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=dd0390e9886af8c80bbda292ef25a74c",
         method: "GET"
     }).then(function(res){
         console.log(res);
@@ -36,25 +36,38 @@ $("#searchButton").on('click', function(){
 
 
         // Temperature variables and such
-        let kelvinTemp = res.main.temp;
-        let fahrenheitTemp = (Math.floor(((kelvinTemp - 273.15) * 1.80 + 32))); 
-        $('#cityTemp').text(fahrenheitTemp + '°')
-
+        $('#cityTemp').append(res.main.temp + '°')
+    
         // Pulling and setting humidity
-        $('#cityHumidity').text(res.main.humidity + '%');
+        $('#cityHumidity').append(res.main.humidity + '%');
 
         // Pulling and setting windspeed
-        $('#cityWind').text(res.wind.speed + ' mph');
+        $('#cityWind').append(res.wind.speed + ' mph');
 
-        //Setting variables for latitude and longitude to be used in the next AJAX call to pull and set UVI
+
+        //Setting variables for latitude and longitude to be used in the next AJAX call
         const lat = res.coord.lat;
         const lon = res.coord.lon;
-
+        // This is the AJAX call to pull and set the UVI
         $.ajax({
             url:'https://api.openweathermap.org/data/2.5/uvi?appid=dd0390e9886af8c80bbda292ef25a74c&lat=' + lat + '&lon=' + lon,
             method: "GET"
         }).then(function(response){
             $("#cityUVI").text(response.value)
         })
+
+        const cityID = res.id;
+        
+        // This is the AJAX call that will help set the cards
+        $.ajax({
+            url:"https://api.openweathermap.org/data/2.5/forecast?id=" + cityID + "&units=imperial&appid=dd0390e9886af8c80bbda292ef25a74c",
+            method: "GET"
+        }).then(function(res){
+            console.log(res);
+            
+        })
+
     })
+
+    
 });
