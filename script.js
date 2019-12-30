@@ -64,7 +64,51 @@ $("#searchButton").on('click', function(){
             method: "GET"
         }).then(function(res){
             console.log(res);
+            // Card 1
+            const cardIcon1 = res.list[0].weather[0].icon;
+            const icon1URL = "http://openweathermap.org/img/wn/"+cardIcon1+"@2x.png"
             
+            $('#nextDay1').append("<img src="+icon1URL+">");
+            $('#cardTemp1').append(res.list[0].main.temp + '°');
+            $('#cardHumidity1').append(res.list[0].main.humidity + '%');
+
+
+            // Card 2
+            const cardIcon2 = res.list[8].weather[0].icon;
+            const icon2URL = "http://openweathermap.org/img/wn/"+cardIcon2+"@2x.png"
+    
+            $('#nextDay2').append("<img src="+icon2URL+">");
+            $('#cardTemp2').append(res.list[8].main.temp + '°');
+            $('#cardHumidity2').append(res.list[8].main.humidity + '%');
+
+
+            // Card 3
+            const cardIcon3 = res.list[16].weather[0].icon;
+            const icon3URL = "http://openweathermap.org/img/wn/"+cardIcon3+"@2x.png"
+    
+            $('#nextDay3').append("<img src="+icon3URL+">");
+            $('#cardTemp3').append(res.list[16].main.temp + '°');
+            $('#cardHumidity3').append(res.list[16].main.humidity + '%');
+
+
+             // Card 4
+             const cardIcon4 = res.list[24].weather[0].icon;
+             const icon4URL = "http://openweathermap.org/img/wn/"+cardIcon4+"@2x.png"
+     
+             $('#nextDay4').append("<img src="+icon3URL+">");
+             $('#cardTemp4').append(res.list[24].main.temp + '°');
+             $('#cardHumidity4').append(res.list[24].main.humidity + '%');
+
+
+             // Card 5
+             const cardIcon5 = res.list[36].weather[0].icon;
+             const icon5URL = "http://openweathermap.org/img/wn/"+cardIcon5+"@2x.png"
+     
+             $('#nextDay5').append("<img src="+icon3URL+">");
+             $('#cardTemp5').append(res.list[36].main.temp + '°');
+             $('#cardHumidity5').append(res.list[36].main.humidity + '%');
+
+
         })
 
     })
