@@ -30,7 +30,6 @@ $("#searchButton").on('click', function(){
 
         // Pulling and setting the icons
         const currentIcon = res.weather[0].icon;
-        // console.log(currentIcon);
         const iconURL = "http://openweathermap.org/img/wn/"+currentIcon+"@2x.png"
         $('#cityName').append("<img src="+iconURL+">");
 
@@ -63,7 +62,9 @@ $("#searchButton").on('click', function(){
             url:"https://api.openweathermap.org/data/2.5/forecast?id=" + cityID + "&units=imperial&appid=dd0390e9886af8c80bbda292ef25a74c",
             method: "GET"
         }).then(function(res){
-            console.log(res);
+            // console.log(res);
+
+
             // Card 1
             const cardIcon1 = res.list[0].weather[0].icon;
             const icon1URL = "http://openweathermap.org/img/wn/"+cardIcon1+"@2x.png"
