@@ -17,7 +17,37 @@ $('#nextDay3').text(forecast3);
 $('#nextDay4').text(forecast4);
 $('#nextDay5').text(forecast5);
 
-$("#searchButton").on('click', function(){
+
+
+
+const searchedCitiesArray = [];
+
+function searchedCities() {
+    // Deleting the cities prior to adding new cities
+    // (this is necessary otherwise you WILL have repeat cities)
+    $('#dropdown').empty();
+
+    // Looping through the array of movies
+    for (let i = 0; i < searchedCitiesArray.length; i++) {
+        
+        // Then dynaically generating <a>'s for the dropdown for each searched city
+        const a = $("<a>");
+        // Adding a class of "dropdown-item" to our <a> tag
+        a.addClass("dropdown-item");
+        // Adding the initial dropdown item text
+        a.text(searchedCitiesArray[i]);
+        // Adding the dropdown item to the dropdown div
+        $('#dropdown').append(a);
+    }
+}
+
+
+
+
+$("#searchButton").on('click', function(event){
+
+    event.preventDefault();
+
     $('#cityName').empty();
     $('#cityTemp').empty();
     $('#cityHumidity').empty();
@@ -137,8 +167,17 @@ $("#searchButton").on('click', function(){
 
 
         })
-
     })
 
-    
+    //Adding the city from the searchbar to our array
+    searchedCitiesArray.push(cityName);
+
+    //Calling the searchedCities function which handles the processing of our searchedCitiesArray array lol
+    searchedCities();
 });
+
+
+//This is where the click listener should activate the search when a dropdown-item is clicked on....I'm on the right trail, but I don't think this is it. 
+$(document).on('click', ".dropdown-item");
+
+searchedCities();
