@@ -15,3 +15,9 @@ Cards from Bootsrap for the Cities once they're pulled up.
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </div>
 </div>
+
+
+Current Task:
+-get both the dropdown and the AJAX calls to work.
+  -Append the value of the sent searched city to a button, append that button to the dropdown menu. 
+  -Save said button to local storage

@@ -1,14 +1,10 @@
-// $(document).ready(function() {
-//     $(".dropdown-toggle").dropdown();
-// });
-
 // Variables and jQuery to set dates
 let m = moment().format('dddd, MMMM Do YYYY');
-let forecast1 =moment().add(1,'d').format('l');
-let forecast2 =moment().add(2,'d').format('l');
-let forecast3 =moment().add(3,'d').format('l');
-let forecast4 =moment().add(4,'d').format('l');
-let forecast5 =moment().add(5,'d').format('l');
+let forecast1 = moment().add(1,'d').format('l');
+let forecast2 = moment().add(2,'d').format('l');
+let forecast3 = moment().add(3,'d').format('l');
+let forecast4 = moment().add(4,'d').format('l');
+let forecast5 = moment().add(5,'d').format('l');
 
 $('#currentDate').text(m);
 $('#nextDay1').text(forecast1);
@@ -37,30 +33,41 @@ function searchedCities() {
         // Adding the initial dropdown item text
         a.text(searchedCitiesArray[i]);
         // Adding the dropdown item to the dropdown div
-        $('#dropdown').append(a);
+        $('#dropdown').prepend(a);
     }
 }
 
 
 
 
-$("#searchButton").on('click', function(event){
+$("#searchButton").on('click', function(){
+    
+    
 
-    event.preventDefault();
+    // const cityName = "Denver";
+    const cityName = $('#searchBar').val();
+    console.log(cityName);
+    getAJAX(cityName);
+    $("#searchBar").val('');
 
+
+    //Adding the city from the searchbar to our array
+    searchedCitiesArray.push(cityName);
+
+    //Calling the searchedCities function which handles the processing of our searchedCitiesArray array lol
+    searchedCities();
+});
+
+
+function getAJAX(someCity){
     $('#cityName').empty();
     $('#cityTemp').empty();
     $('#cityHumidity').empty();
     $('#cityWind').empty();
 
-    console.log($('#searchBar').val());
-    // const cityName = "Denver";
-    const cityName = $('#searchBar').val();
-
-
     // AJAX call to open weather api. Contains another AJAX call for the UVI
     $.ajax({
-        url:"https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=dd0390e9886af8c80bbda292ef25a74c",
+        url:"https://api.openweathermap.org/data/2.5/weather?q=" + someCity + "&units=imperial&appid=dd0390e9886af8c80bbda292ef25a74c",
         method: "GET"
     }).then(function(res){
         console.log(res);
@@ -89,7 +96,7 @@ $("#searchButton").on('click', function(event){
         // This is the AJAX call to pull and set the UVI
         $.ajax({
             url:'https://api.openweathermap.org/data/2.5/uvi?appid=dd0390e9886af8c80bbda292ef25a74c&lat=' + lat + '&lon=' + lon,
-            method: "GET"
+            // method: "GET"
         }).then(function(response){
             $("#cityUVI").text(response.value)
         })
@@ -118,6 +125,21 @@ $("#searchButton").on('click', function(event){
             $('#cardHumidity3').empty();
             $('#cardHumidity4').empty();
             $('#cardHumidity5').empty();
+
+            // for (let i = 0; i < res.list.length; i++) {
+            //     if (res.list[i].dt_txt.indexOf("12:00") !== -1){
+            //         const cardIcon1 = res.list[i].weather[0].icon;
+            //         const icon1URL = "http://openweathermap.org/img/wn/"+cardIcon1+"@2x.png"
+            
+            //         $('#icon0').append("<img src="+icon1URL+">");
+            //         $('#cardTemp0').append(res.list[i].main.temp + '°');
+            //         $('#cardHumidity0').append(res.list[i].main.humidity + '%');
+            //     }
+                
+            // }
+
+            // Everytime it loops, create a new car with class "card-body", etc..., then append the card to the row
+
 
 
 
@@ -168,16 +190,17 @@ $("#searchButton").on('click', function(event){
 
         })
     })
+}
 
-    //Adding the city from the searchbar to our array
-    searchedCitiesArray.push(cityName);
 
-    //Calling the searchedCities function which handles the processing of our searchedCitiesArray array lol
-    searchedCities();
-});
 
 
 //This is where the click listener should activate the search when a dropdown-item is clicked on....I'm on the right trail, but I don't think this is it. 
-$(document).on('click', ".dropdown-item");
+$(document).on('click', ".dropdown-item", function(){
 
-searchedCities();
+    console.log($(this).text());
+    const cityName = $(this).text();
+    getAJAX(cityName);
+});
+
+// searchedCities();
