@@ -14,11 +14,59 @@ $('#nextDay4').text(forecast4);
 $('#nextDay5').text(forecast5);
 
 
+// ------Geolocation stuff------
+    
+function getLocation(){
+    
+    if (navigator.geolocation){
+        const currentPosition = navigator.geolocation.getCurrentPosition(showPosition);
+        console.log(currentPosition);
+    }
+    else{
+        alert("Geolocation is not supported by this browser.");
+    }
 
+}
+
+function showPosition(position){
+
+    console.log(position);
+
+    const geoLat = position.coords.latitude; 
+    const geoLon = position.coords.longitude;
+    console.log(geoLat);
+    console.log(geoLon);
+
+    $.ajax({
+        url:'https://api.openweathermap.org/data/2.5/uvi?appid=dd0390e9886af8c80bbda292ef25a74c&lat=' + geoLat + '&lon=' + geoLon,
+        method: "GET"
+    }).then(function(response){
+        // console.log(response);
+    })
+    
+    $.ajax({
+        url:'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + geoLat + ',' + geoLon + '&key=AIzaSyBpZZdD3TjpeQHhp9EV63t1sE4PIPTqo58',
+        method: 'GET'
+    }).then(function(res){
+        // console.log(res);
+        console.log(res.results[6].formatted_address);
+        const geoCityName = res.results[6].formatted_address;
+        getAJAX(geoCityName);
+        searchedCitiesArray.push(geoCityName);
+        searchedCities(geoCityName);
+    })
+}   
+
+getLocation()
+
+
+
+
+//------Dropdown menu stuff----------
 
 const searchedCitiesArray = [];
 
-function searchedCities() {
+function searchedCities(getButton) {
     // Deleting the cities prior to adding new cities
     // (this is necessary otherwise you WILL have repeat cities)
     $('#dropdown').empty();
@@ -38,18 +86,14 @@ function searchedCities() {
 }
 
 
-
+// ------Main onclick function that sets all the info up------
 
 $("#searchButton").on('click', function(){
     
-    
-
-    // const cityName = "Denver";
     const cityName = $('#searchBar').val();
     console.log(cityName);
     getAJAX(cityName);
     $("#searchBar").val('');
-
 
     //Adding the city from the searchbar to our array
     searchedCitiesArray.push(cityName);
@@ -58,6 +102,8 @@ $("#searchButton").on('click', function(){
     searchedCities();
 });
 
+
+// ------Main function that puts all the info on the page------
 
 function getAJAX(someCity){
     $('#cityName').empty();
@@ -195,12 +241,20 @@ function getAJAX(someCity){
 
 
 
-//This is where the click listener should activate the search when a dropdown-item is clicked on....I'm on the right trail, but I don't think this is it. 
+//This function activates a re-search of the button's titled city in the dropdown menu. 
 $(document).on('click', ".dropdown-item", function(){
-
     console.log($(this).text());
     const cityName = $(this).text();
     getAJAX(cityName);
 });
 
-// searchedCities();
+
+
+//LocalStorage stuff
+// ------------------------------------------------------------
+
+// This is where localStorage will do it's thang. The only thing is that I don't know where to go from here. I don't know what to save as the key and the value. I know I need the buttons to save to localStorage. I just don't know how to do that based on a key and a value?
+// const buttonName = $('.dropdown-item').val();
+// console.log(buttonName);
+// const stuff = 2;
+// localStorage.setItem(buttonName, stuff)

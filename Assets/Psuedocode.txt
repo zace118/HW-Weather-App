@@ -21,3 +21,25 @@ Current Task:
 -get both the dropdown and the AJAX calls to work.
   -Append the value of the sent searched city to a button, append that button to the dropdown menu. 
   -Save said button to local storage
+
+
+
+
+
+
+
+  //Test: Chicago
+    const geoLat = 41.8781; 
+    const geoLon = 87.6298;
+
+    //Test: Portland
+    const geoLat = 45.5051; 
+    const geoLon = 122.6750;
+
+    //Test: Austin
+    const geoLat = 30.2672; 
+    const geoLon = 97.7431;
+
+    //Test: Miami
+    const geoLat = 25.7617; 
+    const geoLon = 80.1918;
