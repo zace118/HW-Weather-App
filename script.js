@@ -40,9 +40,8 @@ function showPosition(position) {
 
 getLocation();
 
-//Dropdown menu stuff
-const searchedCitiesArray =
-    JSON.parse(localStorage.getItem("searchedCitiesHistory")) || [];
+// This is the searchedCitiesArray. Initially will start as an empty array, but upon reload, will PULL the searchedCitiesHistory that I set on line 223 from localStorage.
+const searchedCitiesArray = JSON.parse(localStorage.getItem("searchedCitiesHistory")) || [];
 
 //This function creates the buttons within the dropdown menu
 function searchedCities(getButton) {
@@ -73,6 +72,7 @@ $("#searchButton").on("click", function () {
     //if statement that looks for if cityName doesn't exist in the searchedCitiesArray, push the cityName. Both of these statements do the same thing, one utilizes indexOf and one utilizes includes.
 
     // if (searchedCitiesArray.indexOf(cityName) === -1) {
+    //     // Add the city from the searchbar to our array
     //     searchedCitiesArray.push(cityName);
     // }
 
