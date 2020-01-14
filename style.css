@@ -20,3 +20,10 @@ body {
     height: auto;
 }
 
+#5DayTitle {
+    text-align: center;
+}
+
+#card {
+    position: relative;
+}
