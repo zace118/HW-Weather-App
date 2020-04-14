@@ -1,3 +1,7 @@
+const openWeatherKey = config.openWeatherKey;
+const googleMapsKey = config.googleMapsKey;
+
+
 //Geolocation stuff
 function getLocation() {
     if (navigator.geolocation) {
@@ -13,25 +17,20 @@ function showPosition(position) {
     //Getting the latitude and longitude from the geolocation that is determined above using geolocation.
     const geoLat = position.coords.latitude;
     const geoLon = position.coords.longitude;
-    console.log(geoLat);
-    console.log(geoLon);
+    // console.log(geoLat);
+    // console.log(geoLon);
 
-    // Plugs in the lat and lon from above into an AJAX call to openweather API
-    $.ajax({
-        url: "https://api.openweathermap.org/data/2.5/uvi?appid=dd0390e9886af8c80bbda292ef25a74c&lat=" + geoLat + "&lon=" + geoLon,
-        method: "GET"
-    }).then(function (response) {
-        console.log(response);
-    });
 
     // Using google, I reverse geolocate to get the town name. This isn't perfect yet as sometimes it returns "Arizona, USA"
     $.ajax({
-        url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + geoLat + "," + geoLon + "&key=AIzaSyBpZZdD3TjpeQHhp9EV63t1sE4PIPTqo58",
+        url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + geoLat + "," + geoLon + "&key=" + googleMapsKey,
         method: "GET"
     }).then(function (res) {
-        console.log(res);
-        console.log(res.results[6].formatted_address);
-        const geoCityName = res.results[0].address_components[2].long_name;
+        // console.log(res);
+
+        // This variable slices the results array backwards, then I take the zeroeth index from that new array, and access that address. This has proved most successful. 
+        const geoCityName = res.results.slice(-4)[0].formatted_address;
+        console.log(geoCityName);
         getAJAX(geoCityName);
         searchedCitiesArray.push(geoCityName);
         searchedCities(geoCityName);
@@ -81,7 +80,7 @@ $("#searchButton").on("click", function () {
         searchedCitiesArray.push(cityName);
     }
 
-    //Calling the searchedCities function which handles the processing of our searchedCitiesArray array lol
+    //Calling the searchedCities function which handles the processing of our searchedCitiesArray array
     searchedCities();
 });
 
@@ -99,7 +98,7 @@ function getAJAX(someCity) {
 
     // AJAX call to open weather api. Contains another AJAX call for the UVI
     $.ajax({
-        url: "https://api.openweathermap.org/data/2.5/weather?q=" + someCity + "&units=imperial&appid=dd0390e9886af8c80bbda292ef25a74c",
+        url: "https://api.openweathermap.org/data/2.5/weather?q=" + someCity + "&units=imperial&appid=" + openWeatherKey,
         method: "GET"
     }).then(function (res) {
         // console.log(res);
@@ -122,9 +121,10 @@ function getAJAX(someCity) {
         //Setting variables for latitude and longitude to be used in the next AJAX call
         const lat = res.coord.lat;
         const lon = res.coord.lon;
+
         // This is the AJAX call to pull and set the UVI
         $.ajax({
-            url: "https://api.openweathermap.org/data/2.5/uvi?appid=dd0390e9886af8c80bbda292ef25a74c&lat=" + lat + "&lon=" + lon,
+            url: "https://api.openweathermap.org/data/2.5/uvi?appid=" + openWeatherKey + "&lat=" + lat + "&lon=" + lon,
             method: "GET"
         }).then(function (response) {
             $("#cityUVI").text(response.value);
@@ -134,7 +134,7 @@ function getAJAX(someCity) {
 
         // This is the AJAX call that will help set the cards
         $.ajax({
-            url: "https://api.openweathermap.org/data/2.5/forecast?id=" + cityID + "&units=imperial&appid=dd0390e9886af8c80bbda292ef25a74c",
+            url: "https://api.openweathermap.org/data/2.5/forecast?id=" + cityID + "&units=imperial&appid=" + openWeatherKey,
             method: "GET"
         }).then(function (res) {
             console.log(res);
@@ -154,7 +154,7 @@ function getAJAX(someCity) {
                         "http://openweathermap.org/img/wn/" + cardIcon + "@2x.png";
                     // console.log(iconURL);
 
-                    //Generates the div tg to begin creating the cards.
+                    //Generates the div tag to begin creating the cards.
                     const parentDiv = $("<div>");
                     //Adds class and ID to parentDiv
                     parentDiv
