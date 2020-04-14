@@ -5,7 +5,8 @@ A simple weather forecast app. This was one of my favorite assignments because t
 
 ## Built With
 
-* [jQuery](https://api.jquery.com/) 
+* [jQuery](https://api.jquery.com/)
+* [AJAX](https://api.jquery.com/jquery.ajax/)
 
 ## Authors
 
