@@ -1,7 +1,6 @@
 const openWeatherKey = config.openWeatherKey;
 const googleMapsKey = config.googleMapsKey;
 
-
 //Geolocation stuff
 function getLocation() {
     if (navigator.geolocation) {
@@ -9,7 +8,7 @@ function getLocation() {
     } else {
         alert("Geolocation is not supported by this browser.");
     }
-}
+};
 
 function showPosition(position) {
     console.log(position);
@@ -35,7 +34,7 @@ function showPosition(position) {
         searchedCitiesArray.push(geoCityName);
         searchedCities(geoCityName);
     });
-}
+};
 
 getLocation();
 
@@ -134,7 +133,7 @@ function getAJAX(someCity) {
 
         // This is the AJAX call that will help set the cards
         $.ajax({
-            url: "https://api.openweathermap.org/data/2.5/forecast?id=" + cityID + "&units=imperial&appid=" + openWeatherKey,
+            url: `https://api.openweathermap.org/data/2.5/forecast?id=${cityID}&units=imperial&appid=${openWeatherKey}`,
             method: "GET"
         }).then(function (res) {
             console.log(res);
@@ -150,9 +149,9 @@ function getAJAX(someCity) {
                     const cardIcon = res.list[i].weather[0].icon;
                     // console.log(cardIcon);
 
-                    const iconURL =
-                        "http://openweathermap.org/img/wn/" + cardIcon + "@2x.png";
+                    const iconURL = `http://openweathermap.org/img/wn/${cardIcon}@2x.png`;
                     // console.log(iconURL);
+
 
                     //Generates the div tag to begin creating the cards.
                     const parentDiv = $("<div>");
