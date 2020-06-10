@@ -15,8 +15,17 @@ body {
   background-color: transparent;
   text-align: center;
   font-weight: bolder;
-  color: aliceblue;
-  border: 1px solid rgba(0, 0, 0, 0.125);
+  border: 1px solid black;
+  border-radius: 3%;
+  box-shadow: 10px 5px 5px #465479;
+}
+
+.jumbotron p {
+  color: black;
+}
+
+#cityName {
+  color: black;
 }
 
 #icon {
@@ -43,4 +52,7 @@ body {
   text-align: center;
   font-weight: bolder;
   color: aliceblue;
+  border: 1px solid black;
+  border-radius: 3%;
+  box-shadow: 10px 5px 5px #465479;
 }
