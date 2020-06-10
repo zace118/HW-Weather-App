@@ -1,29 +1,46 @@
 body {
-    background-image: url('Assets/Images/background.png');
-    background-size: cover;
-    background-position: center;
-    width: auto;
-    height: auto;
-    background-repeat: no-repeat;
+  background-image: url("Assets/Images/background.png");
+  background-size: cover;
+  background-position: center;
+  width: auto;
+  height: auto;
+  background-repeat: no-repeat;
 }
 
 #navBar {
-  width: 100%;
+  width: 100vw;
 }
 
-.card {
-    margin: 10px;
+.jumbotron {
+  background-color: transparent;
+  text-align: center;
+  font-weight: bolder;
+  color: aliceblue;
+  border: 1px solid rgba(0, 0, 0, 0.125);
 }
 
 #icon {
-    width: 10%;
-    height: auto;
+  width: 10%;
+  height: auto;
 }
 
-#5DayTitle {
-    text-align: center;
+#title {
+  text-align: center;
+  color: aliceblue;
 }
 
-#card {
-    position: relative;
+.card {
+  margin: 10px;
+  background-color: transparent;
+}
+
+#cardSlot {
+  display: flex;
+  justify-content: center;
+}
+
+.card-body {
+  text-align: center;
+  font-weight: bolder;
+  color: aliceblue;
 }
